@@ -1,13 +1,23 @@
-import pg from "pg";
+import pg from 'pg';
 
 const { Pool } = pg;
 
+let database;
+
+if (process.env.NODE_ENV === 'test') {
+  database = 'banco_de_testes_my_shopping_list';
+} else {
+  database = 'my_shopping_list';
+}
+
+console.log(`Utilizando o banco de dados '${database}'`);
+
 const connection = new Pool({
-  user: "bootcamp_role",
-  password: "senha_super_hiper_ultra_secreta_do_role_do_bootcamp",
-  host: "localhost",
+  user: 'postgres',
+  password: 'senha',
+  host: 'localhost',
   port: 5432,
-  database: "my_shopping_list"
+  database: database
 });
 
 export default connection;
