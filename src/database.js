@@ -10,17 +10,6 @@ if (process.env.NODE_ENV === 'test') {
   database = 'my_shopping_list';
 }
 
-console.log(`Utilizando o banco de dados '${database}'`);
-
-const connection = new Pool({
-  user: 'postgres',
-  password: 'senha',
-  host: 'localhost',
-  port: 5432,
-  database: database
-});
-
-
 const connection = new Pool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
@@ -28,5 +17,7 @@ const connection = new Pool({
   host: process.env.DB_HOST,
   database: process.env.DB_DATABASE
 });
+
+console.log(`Utilizando o banco de dados '${database}'`);
 
 export default connection;
